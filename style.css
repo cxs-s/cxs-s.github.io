@@ -1,0 +1,791 @@
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #080808;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+    width: 100%;
+
+    position: relative;
+
+    display: flex;
+
+    overflow: hidden;
+
+    background: #080808;
+}
+
+
+/* =========================
+   PHOTO
+========================= */
+
+.hero-image {
+    width: 50%;
+    height: 100vh;
+
+    position: relative;
+
+    z-index: 1;
+
+    flex-shrink: 0;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    filter: brightness(0.85);
+}
+
+
+/* Smooth photo → black fade */
+
+.hero-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 35%,
+            rgba(8, 8, 8, 0.05) 48%,
+            rgba(8, 8, 8, 0.25) 65%,
+            rgba(8, 8, 8, 0.65) 82%,
+            #080808 100%
+        );
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content {
+    width: 50%;
+
+    min-width: 0;
+
+    padding: 8vh 4vw 8vh 4vw;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    position: relative;
+
+    z-index: 4;
+}
+
+
+/* Small heading */
+
+.subtitle {
+    color: #c1121f;
+
+    font-size: 0.9rem;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+
+/* Jackson Wang name */
+
+.hero-content h1 {
+    font-size: clamp(3.5rem, 7vw, 7rem);
+
+    line-height: 0.85;
+
+    letter-spacing: -3px;
+
+    font-weight: 900;
+
+    margin-bottom: 40px;
+
+    max-width: 100%;
+
+    overflow-wrap: break-word;
+}
+
+
+/* Bio */
+
+.bio {
+    max-width: 480px;
+
+    color: #bdbdbd;
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   DIAGONAL RED BLUR
+========================= */
+
+.diagonal-blur {
+    position: absolute;
+
+    width: 60%;
+
+    height: 180%;
+
+    top: -40%;
+
+    left: 34%;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 20%,
+            rgba(193, 18, 31, 0.03) 35%,
+            rgba(193, 18, 31, 0.10) 43%,
+            rgba(193, 18, 31, 0.28) 49%,
+            rgba(193, 18, 31, 0.16) 54%,
+            rgba(8, 8, 8, 0.35) 62%,
+            rgba(8, 8, 8, 0.8) 70%,
+            transparent 82%
+        );
+
+    filter: blur(45px);
+
+    transform: skewX(-14deg);
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   TIMELINE SECTION
+========================= */
+
+.timeline-section {
+    min-height: 100vh;
+
+    width: 100%;
+
+    padding: 120px 8%;
+
+    background:
+        radial-gradient(
+            circle at 80% 40%,
+            rgba(193, 18, 31, 0.18),
+            transparent 35%
+        ),
+        #080808;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+/* Timeline heading */
+
+.timeline-heading {
+    margin-bottom: 60px;
+}
+
+.section-label {
+    color: #c1121f;
+
+    font-size: 0.9rem;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+.timeline-section h2 {
+    font-size: clamp(3rem, 7vw, 7rem);
+
+    line-height: 0.9;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 30px;
+}
+
+.section-intro {
+    max-width: 600px;
+
+    color: #999;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   TIMELINE
+========================= */
+
+.timeline-wrapper {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* Visible area */
+
+.timeline-window {
+    width: 100%;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+
+/* Moving cards */
+
+.timeline-track {
+    display: flex;
+
+    width: 100%;
+
+    transition:
+        transform 0.7s cubic-bezier(0.77, 0, 0.18, 1);
+
+    cursor: grab;
+
+    user-select: none;
+
+    touch-action: pan-y;
+}
+
+.timeline-track:active {
+    cursor: grabbing;
+}
+
+
+/* Individual card */
+
+.timeline-card {
+    min-width: 100%;
+
+    min-height: 380px;
+
+    padding: 55px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.04),
+            rgba(255, 255, 255, 0.01)
+        );
+
+    border: 1px solid #292929;
+}
+
+
+/* Giant background year */
+
+.timeline-card::before {
+    content: attr(data-year);
+
+    position: absolute;
+
+    right: 20px;
+
+    bottom: -55px;
+
+    font-size: 12rem;
+
+    font-weight: 900;
+
+    color: rgba(193, 18, 31, 0.05);
+
+    pointer-events: none;
+}
+
+
+/* Year */
+
+.timeline-year {
+    color: #c1121f;
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+}
+
+
+/* Card number */
+
+.timeline-number {
+    position: absolute;
+
+    top: 45px;
+
+    right: 55px;
+
+    font-size: 4rem;
+
+    font-weight: 900;
+
+    color: rgba(255, 255, 255, 0.08);
+}
+
+
+/* Achievement title */
+
+.timeline-card h3 {
+    font-size: clamp(3rem, 6vw, 6rem);
+
+    line-height: 0.9;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 30px;
+}
+
+
+/* Description */
+
+.timeline-card p {
+    max-width: 650px;
+
+    color: #aaa;
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+}
+
+
+/* Category */
+
+.timeline-category {
+    display: inline-block;
+
+    margin-top: 40px;
+
+    padding: 8px 14px;
+
+    border-left: 3px solid #c1121f;
+
+    color: #777;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================
+   TIMELINE BUTTONS
+========================= */
+
+.timeline-arrow {
+    width: 55px;
+
+    height: 55px;
+
+    flex-shrink: 0;
+
+    border: 1px solid #444;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 1.4rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.timeline-arrow:hover {
+    background: #c1121f;
+
+    border-color: #c1121f;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   TIMELINE PROGRESS
+========================= */
+
+.timeline-progress {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 35px;
+}
+
+.progress-dot {
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #444;
+
+    transition: 0.3s ease;
+}
+
+.progress-dot.active {
+    width: 30px;
+
+    border-radius: 10px;
+
+    background: #c1121f;
+}
+
+
+/* Swipe instruction */
+
+.swipe-hint {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #555;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 4px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    /* HERO */
+
+    .hero {
+        flex-direction: column;
+    }
+
+    .hero-image {
+        width: 100%;
+
+        height: 55vh;
+    }
+
+    .hero-content {
+        width: 100%;
+
+        min-height: 45vh;
+
+        padding: 60px 30px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(3.5rem, 15vw, 5rem);
+
+        letter-spacing: -2px;
+    }
+
+    /* Move diagonal effect lower on mobile */
+
+    .diagonal-blur {
+        width: 100%;
+
+        height: 45%;
+
+        left: 0;
+
+        top: 30%;
+    }
+
+
+    /* TIMELINE */
+
+    .timeline-section {
+        padding: 80px 25px;
+    }
+
+    .timeline-section h2 {
+        font-size: 3.5rem;
+    }
+
+    .timeline-wrapper {
+        gap: 10px;
+    }
+
+    .timeline-arrow {
+        width: 45px;
+
+        height: 45px;
+    }
+
+    .timeline-card {
+        min-height: 450px;
+
+        padding: 35px 25px;
+    }
+
+    .timeline-card h3 {
+        font-size: 3.5rem;
+    }
+
+    .timeline-number {
+        font-size: 3rem;
+
+        top: 30px;
+
+        right: 25px;
+    }
+
+    .timeline-card p {
+        font-size: 0.95rem;
+    }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    position: relative;
+
+    padding: 100px 8% 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #080808 0%,
+            #100303 100%
+        );
+
+    border-top: 1px solid #242424;
+
+    overflow: hidden;
+}
+
+
+/* Red atmospheric glow */
+
+.footer::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    left: -200px;
+    bottom: -300px;
+
+    background: rgba(193, 18, 31, 0.18);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+
+.footer-content {
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    gap: 60px;
+
+    padding-bottom: 80px;
+}
+
+
+/* Footer title */
+
+.footer-label {
+    color: #c1121f;
+
+    font-size: 0.8rem;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+
+.footer-brand h2 {
+    font-size: clamp(3rem, 6vw, 6rem);
+
+    line-height: 0.85;
+
+    letter-spacing: -3px;
+
+    margin-bottom: 25px;
+}
+
+
+.footer-brand p:last-child {
+    max-width: 400px;
+
+    color: #777;
+
+    line-height: 1.7;
+}
+
+
+/* Links */
+
+.footer-links {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 18px;
+}
+
+
+.footer-links a {
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 1.1rem;
+
+    letter-spacing: 1px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.footer-links a:hover {
+    color: #c1121f;
+
+    transform: translateX(-8px);
+}
+
+
+/* Bottom copyright */
+
+.footer-bottom {
+    position: relative;
+
+    z-index: 2;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #242424;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color: #444;
+
+    font-size: 0.75rem;
+}
+
+
+/* =========================
+   FOOTER MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .footer {
+        padding: 80px 30px 25px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding-bottom: 60px;
+    }
+
+    .footer-links {
+        align-items: flex-start;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+}
