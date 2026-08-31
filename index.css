@@ -1,0 +1,90 @@
+body {
+    background-color: rgb(139, 160, 85);
+    color: aliceblue;
+    text-align: center;
+    margin: 0;
+}
+
+.profile {
+    margin-top: 40px;
+    height: 100vh;
+}
+
+.title {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.bio {
+    margin: 40px auto 0;
+    border: 2px solid rgba(240, 248, 255, 0.144);
+    border-style: dashed;
+    width: 250px;
+    border-radius: 5%;
+}
+
+/* Photo */
+.photo {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: auto;
+}
+
+.mugshot,
+.mugshot2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.mugshot2 {
+    z-index: 1;
+}
+
+.mugshot {
+    z-index: 2;
+    opacity: 0;
+}
+@keyframes wriggle {
+    
+}
+.photo:hover .mugshot {
+    opacity: 1;
+}
+
+
+/* Video */
+.video {
+    display: none;
+}
+
+.link:hover > .video {
+    display: block;
+}
+
+.video iframe {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    align-items: center;
+    justify-content: center;
+    width: 150vw;
+    height: 150vh;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+/* footer */
+.footer {
+    margin: 20%;
+    font-size: 14px;
+    color: aliceblue;
+}
