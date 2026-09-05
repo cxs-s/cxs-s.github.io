@@ -101,15 +101,6 @@
 
         </div>
 
-
-        <!-- Buttons and Alerts -->
-        <div class="row">
-            <button class="btn btn-custom mb-3 mt-3" onclick="alert('You are now a Belieber!')">Join the Beliebers</button>
-            <a href="https://www.justinbiebermusic.com" class="btn btn-primary" target="_blank">Learn More</a>
-
-            <!-- Task 2
-             - Modal Button
-             - Add a button here to trigger the modal -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -119,9 +110,48 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-        </div>
-        <!-- Modal -->
-        
+            </div>
+
+        <!-- Buttons and Alerts -->
+        <div class="row">
+            <button class="btn btn-custom mb-3 mt-3" onclick="alert('You are now a Belieber!')">Join the Beliebers</button>
+            <a href="https://www.justinbiebermusic.com" class="btn btn-primary mb-3" target="_blank">Learn More</a>
+
+            <!-- Task 2
+             - Modal Button
+             - Add a button here to trigger the modal -->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Sign Up for Fan Club
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Join the Justin Bieber Fan Club</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" class="form-control">
+                        <br>
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="text" id="email" name="email" placeholder="name@example.com" class="form-control">
+                        <br>
+                        <label for="message" class="form-label">Message:</label>
+                        <textarea cols="30" rows="3" id="message" name="message" placeholder="Why do you love Justin?" class="form-control"></textarea>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>
+                </div>
+            </div>
+            </div>
 
 
     </div>
